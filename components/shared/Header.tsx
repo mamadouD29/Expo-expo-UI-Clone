@@ -6,9 +6,10 @@ import { globaleStyles } from "../../styles/globalStyles";
 interface HeaderProps {
 	title: string;
 	user?: string;
+	img?: boolean;
 }
 
-export default function Header({ title, user }: HeaderProps) {
+export default function Header({ title, user, img }: HeaderProps) {
 	const userI = user?.toUpperCase().charAt(0);
 	return (
 		<View style={[globaleStyles.container]}>
@@ -20,10 +21,12 @@ export default function Header({ title, user }: HeaderProps) {
 				]}
 			>
 				<View style={[globaleStyles.hCtr]}>
-					<Image
-						source={require("../../assets/img/expoLogo.png")}
-						style={[styles.logo]}
-					/>
+					{img && (
+						<Image
+							source={require("../../assets/img/expoLogo.png")}
+							style={[styles.logo]}
+						/>
+					)}
 					<Text style={[{ fontWeight: "bold" }]}>{title}</Text>
 				</View>
 				{userI && (

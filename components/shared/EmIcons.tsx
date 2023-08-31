@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { MaterialIcons, FontAwesome } from "@expo/vector-icons";
+import { MaterialIcons, FontAwesome, Entypo } from "@expo/vector-icons";
 
 interface EmIconsProps {
 	title: string;
@@ -32,9 +32,38 @@ export function EmIcons({ title, size, color }: EmIconsProps) {
 					color={color ?? "black"}
 				/>
 			)}
+			{title === "Auto" && (
+				<MaterialIcons
+					name="brightness-6"
+					size={size ?? 24}
+					color={color ?? "black"}
+				/>
+			)}
+			{title === "Dark" && (
+				<MaterialIcons
+					name="brightness-3"
+					size={size ?? 24}
+					color={color ?? "black"}
+				/>
+			)}
+			{title === "Light" && (
+				<Entypo
+					name="light-up"
+					size={size ?? 24}
+					color={color ?? "black"}
+				/>
+			)}
+
 			{title === "Gear" && (
 				<FontAwesome
 					name="gear"
+					size={size ?? 24}
+					color={color ?? "black"}
+				/>
+			)}
+			{title === "Trash" && (
+				<FontAwesome
+					name="trash-o"
 					size={size ?? 24}
 					color={color ?? "black"}
 				/>

@@ -18,7 +18,7 @@ export default function HomeStack() {
 				component={HomeScreen}
 				options={{
 					headerTitle: () => (
-						<Header title="Expo Go" user="Mamadou" />
+						<Header title="Expo Go" user="Mamadou" img={true} />
 					),
 				}}
 			/>
