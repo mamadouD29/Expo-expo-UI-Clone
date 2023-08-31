@@ -9,4 +9,5 @@ create a ui clone of expo with expo
 
 
 ### Dependencies:
+- stack navigator
 -  npm i react-native-modal
