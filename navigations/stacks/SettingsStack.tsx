@@ -10,21 +10,18 @@ import Header from "../../components/shared/Header";
 
 const Stack = createNativeStackNavigator();
 
-export default function HomeStack() {
+export default function SettingsStack() {
 	return (
 		<Stack.Navigator>
 			<Stack.Screen
-				name="HomeScreen"
-				component={HomeScreen}
+				name="SettingsScreen"
+				component={SettingsScreen}
 				options={{
 					headerTitle: () => (
-						<Header title="Expo Go" user="Mamadou" />
+						<Header title="Settings"  />
 					),
 				}}
 			/>
-			<Stack.Screen name="Settings" component={SettingsScreen} />
-			<Stack.Screen name="Projects" component={ProjectsScreen} />
-			<Stack.Screen name="Snacks" component={SnacksScreen} />
 		</Stack.Navigator>
 	);
 }

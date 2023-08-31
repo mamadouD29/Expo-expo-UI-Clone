@@ -5,11 +5,11 @@ import { globaleStyles } from "../../styles/globalStyles";
 
 interface HeaderProps {
 	title: string;
-	user: string;
+	user?: string;
 }
 
 export default function Header({ title, user }: HeaderProps) {
-	const userI = user.toUpperCase().charAt(0);
+	const userI = user?.toUpperCase().charAt(0);
 	return (
 		<View style={[globaleStyles.container]}>
 			<View
@@ -26,15 +26,17 @@ export default function Header({ title, user }: HeaderProps) {
 					/>
 					<Text style={[{ fontWeight: "bold" }]}>{title}</Text>
 				</View>
-				<View
-					style={[
-						globaleStyles.hCtr,
-						styles.name,
-						// { borderRadius: 50 },
-					]}
-				>
-					<Text style={[{ fontWeight: "bold" }]}>{userI}</Text>
-				</View>
+				{userI && (
+					<View
+						style={[
+							globaleStyles.hCtr,
+							styles.name,
+							// { borderRadius: 50 },
+						]}
+					>
+						<Text style={[{ fontWeight: "bold" }]}>{userI}</Text>
+					</View>
+				)}
 			</View>
 		</View>
 	);
