@@ -1,12 +1,14 @@
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { globaleStyles } from "../../../styles/globalStyles";
+import { themeMode } from "../../../services/utils/themeMode";
 
 interface AppInfoProps {
 	appInfoHandler: (id: number) => void;
 }
 
 export function AppInfo({ appInfoHandler }: AppInfoProps) {
+	const { themeText, themeBcolor } = themeMode();
 	return (
 		<>
 			<View style={[styles.btnCtr, { borderTopWidth: 0 }]}>
@@ -17,8 +19,8 @@ export function AppInfo({ appInfoHandler }: AppInfoProps) {
 						{ opacity: pressed ? 0.3 : 1 },
 					]}
 				>
-					<Text style={[styles.title]}>Device ID</Text>
-					<Text>f23a-fbfd</Text>
+					<Text style={[themeText, styles.title]}>Device ID</Text>
+					<Text style={[themeText, styles.title]}>551a-9023</Text>
 				</Pressable>
 			</View>
 			<View style={[styles.btnCtr]}>
@@ -29,21 +31,26 @@ export function AppInfo({ appInfoHandler }: AppInfoProps) {
 						{ opacity: pressed ? 0.3 : 1 },
 					]}
 				>
-					<Text style={[styles.title]}>Client Version</Text>
-					<Text>f23a-fbfd</Text>
+					<Text style={[themeText, styles.title]}>
+						Client Version
+					</Text>
+					<Text style={[themeText, styles.title]}>2.93.3</Text>
 				</Pressable>
 			</View>
-			<View style={[styles.btnCtr]}>
-				<Pressable
-					onPress={() => appInfoHandler(3)}
-					style={({ pressed }) => [
-						styles.btn,
-						{ opacity: pressed ? 0.3 : 1 },
-					]}
-				>
-					<Text style={[styles.title]}>Supported SDKs</Text>
-					<Text>f23a-fbfd</Text>
-				</Pressable>
+			<View
+				style={[
+					globaleStyles.hCtr,
+					themeBcolor,
+					{
+						justifyContent: "space-between",
+						paddingHorizontal: 10,
+						paddingVertical: 15,
+						borderTopWidth: 1,
+					},
+				]}
+			>
+				<Text style={[themeText, styles.title]}>Supported SDKs</Text>
+				<Text style={[themeText, styles.title]}>SDKs: 47, 48, 49</Text>
 			</View>
 		</>
 	);

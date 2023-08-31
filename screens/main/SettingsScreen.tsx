@@ -1,39 +1,75 @@
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+	Pressable,
+	ScrollView,
+	StyleSheet,
+	Text,
+	View,
+	Alert,
+} from "react-native";
 import React, { useState } from "react";
 import { EmIcons } from "../../components/shared/EmIcons";
 import { globaleStyles } from "../../styles/globalStyles";
 import { AppInfo, ThemeOptions } from "../../components/ui/Settings";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { NavigationAndRouteProps } from "../../services/utils/NavigationAndRouteProps";
+import { themeMode } from "../../services/utils/themeMode";
+import ModalMsg from "../../components/shared/ModalMsg";
 
-export default function SettingsScreen() {
-	const [theme, toggleTheme] = useState<number>(1);
+const clipMsg = "The device ID has been copied to your clipboard.";
+
+export default function SettingsScreen({
+	navigation,
+}: NavigationAndRouteProps) {
 	const [info, setInfo] = useState(0);
+	const { themeContainer, ThemeContent, themeText, themeBcolor } =
+		themeMode();
 
-	const themeHandler = (id: number) => {
-		if (id < 1 || id > 3) return;
-		toggleTheme(id);
+	const closeModal = (id: number) => {
+		setInfo(0);
 	};
 
-	const appInfoHandler = (id: number) => {};
+	const appInfoHandler = (id: number) => {
+		setInfo(id);
+	};
+
+	const delHandler = async () => {
+		Alert.alert("Delete account", "Are you sure", [
+			{ text: "No", onPress: () => {}, style: "cancel" },
+			{
+				text: "Yes",
+				onPress: async () => {
+					// AsyncStorage.removeItem()
+					// navigation.navigate("Login");
+				},
+			},
+		]);
+	};
 
 	return (
 		<ScrollView
-			style={[globaleStyles.container, styles.container]}
+			style={[globaleStyles.container, themeContainer, styles.container]}
 			contentContainerStyle={[{ paddingBottom: 20 }]}
 		>
+			<ModalMsg
+				option={info === 1 || info === 2}
+				display={closeModal}
+				title="ClipBoard"
+				msg={clipMsg}
+			/>
 			<View
 				style={[
 					globaleStyles.hCtr,
 					{ padding: 10, justifyContent: "flex-start" },
 				]}
 			>
-				<Text style={[styles.title]}>Theme</Text>
+				<Text style={[themeText, styles.title]}>Theme</Text>
 			</View>
 
-			<View style={[styles.devCtr]}>
-				<ThemeOptions theme={theme} themeHandler={themeHandler} />
+			<View style={[styles.devCtr, ThemeContent]}>
+				<ThemeOptions />
 			</View>
 			<View style={[globaleStyles.vCtr, { padding: 10 }]}>
-				<Text>
+				<Text style={[themeText]}>
 					Automatic is only supported on operating systems that allow
 					you to control the system-wide color theme.
 				</Text>
@@ -44,10 +80,10 @@ export default function SettingsScreen() {
 					{ padding: 10, justifyContent: "flex-start" },
 				]}
 			>
-				<Text style={[styles.title]}>App Info</Text>
+				<Text style={[themeText, styles.title]}>App Info</Text>
 			</View>
 
-			<View style={[styles.devCtr]}>
+			<View style={[styles.devCtr, ThemeContent]}>
 				<AppInfo appInfoHandler={appInfoHandler} />
 			</View>
 
@@ -57,17 +93,19 @@ export default function SettingsScreen() {
 					{ padding: 10, justifyContent: "flex-start" },
 				]}
 			>
-				<Text style={[styles.title]}>Delete Account</Text>
+				<Text style={[themeText, styles.title]}>Delete Account</Text>
 			</View>
 
-			<View style={[styles.devCtr, styles.devDel]}>
+			<View style={[styles.devCtr, ThemeContent, styles.devDel]}>
 				<View style={[styles.delCtr]}>
-					<EmIcons title="Trash" />
-					<Text>Delete your account</Text>
+					<EmIcons title="Trash" color={themeText.color} />
+					<Text style={[themeText, styles.title]}>
+						Delete your account
+					</Text>
 				</View>
 
 				<View style={[]}>
-					<Text>
+					<Text style={[themeText, styles.title]}>
 						This action is irreversible. It ill delete your personal
 						accounts, and activity.
 					</Text>
@@ -75,15 +113,18 @@ export default function SettingsScreen() {
 
 				<View style={[styles.btnCtr]}>
 					<Pressable
+						onPress={delHandler}
 						style={({ pressed }) => [
 							styles.btn,
+							themeBcolor,
 							{
 								opacity: pressed ? 0.3 : 1,
-								justifyContent: "flex-end",
 							},
 						]}
 					>
-						<Text>Delete Account</Text>
+						<Text style={[themeText, styles.title]}>
+							Delete Account
+						</Text>
 					</Pressable>
 				</View>
 			</View>
@@ -110,6 +151,7 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "flex-end",
+		// borderWidth: 1,
 		padding: 10,
 		borderColor: "#a3a3a3",
 	},
@@ -117,10 +159,12 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "center",
-		width: 100,
-		padding: 5,
-		borderWidth: 1,
-		borderRadius: 10,
+		width: 120,
+		padding: 10,
+		// borderWidth: 1,
+		borderRadius: 5,
+		// flexGrow: 1,
+		backgroundColor: "#fb7185",
 	},
 	delCtr: {
 		flexDirection: "row",

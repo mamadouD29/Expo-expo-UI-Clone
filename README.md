@@ -11,6 +11,7 @@ create a ui clone of expo with expo
 ### Dependencies:
 - stack navigator
 -  npm i react-native-modal
+-  Async storage
 
 
 ## Thu 31 Aug 08:16 AM

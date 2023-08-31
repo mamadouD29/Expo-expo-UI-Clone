@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 import { EmIcons } from "./EmIcons";
 import { globaleStyles } from "../../styles/globalStyles";
+import { themeMode } from "../../services/utils/themeMode";
 
 interface HeaderProps {
 	title: string;
@@ -11,6 +12,7 @@ interface HeaderProps {
 
 export default function Header({ title, user, img }: HeaderProps) {
 	const userI = user?.toUpperCase().charAt(0);
+	const { themeText}= themeMode();
 	return (
 		<View style={[globaleStyles.container]}>
 			<View
@@ -27,7 +29,7 @@ export default function Header({ title, user, img }: HeaderProps) {
 							style={[styles.logo]}
 						/>
 					)}
-					<Text style={[{ fontWeight: "bold" }]}>{title}</Text>
+					<Text style={[themeText,{ fontWeight: "bold" , fontSize: 20}]}>{title}</Text>
 				</View>
 				{userI && (
 					<View

@@ -7,12 +7,14 @@ import {
 	SnacksScreen,
 } from "../../screens/main/index";
 import Header from "../../components/shared/Header";
+import { themeMode } from "../../services/utils/themeMode";
 
 const Stack = createNativeStackNavigator();
 
 export default function HomeStack() {
+	const { themeContainer } = themeMode();
 	return (
-		<Stack.Navigator>
+		<Stack.Navigator screenOptions={{ headerStyle: themeContainer }}>
 			<Stack.Screen
 				name="HomeScreen"
 				component={HomeScreen}

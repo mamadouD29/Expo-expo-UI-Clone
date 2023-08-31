@@ -2,11 +2,13 @@ import { StyleSheet, Text, View, Image, Pressable } from "react-native";
 import React from "react";
 import { globaleStyles } from "../../../styles/globalStyles";
 import { EmIcons } from "../../shared/EmIcons";
+import { themeMode } from "../../../services/utils/themeMode";
 
 export function SnacksExpo() {
+	const { ThemeContent, themeText, themeBcolor } = themeMode();
 	return (
 		<>
-			<View style={[styles.btnCtr]}>
+			<View style={[styles.btnCtr,themeBcolor, {borderTopWidth: 0}]}>
 				<Pressable
 					style={({ pressed }) => [
 						styles.btn,
@@ -23,18 +25,24 @@ export function SnacksExpo() {
 							style={[styles.logo]}
 						/>
 						<View style={[globaleStyles.vCtr]}>
-							<Text style={[styles.pTitle]}>Tetris</Text>
-							<Text numberOfLines={1} ellipsizeMode="tail">
+							<Text style={[styles.pTitle, themeText]}>
+								Tetris
+							</Text>
+							<Text
+								style={[themeText]}
+								numberOfLines={1}
+								ellipsizeMode="tail"
+							>
 								Tetris is a puzzle video game
 							</Text>
-							<Text>SDK 48</Text>
+							<Text style={[themeText]}>SDK 48</Text>
 						</View>
 					</View>
-					<EmIcons title="Right" />
+					<EmIcons color={themeText.color} title="Right" />
 				</Pressable>
 			</View>
-			
-			<View style={[styles.btnCtr]}>
+
+			<View style={[styles.btnCtr, themeBcolor]}>
 				<Pressable
 					style={({ pressed }) => [
 						styles.btn,
@@ -50,18 +58,23 @@ export function SnacksExpo() {
 							source={require("../../../assets/img/stopwatch.png")}
 							style={[styles.logo]}
 						/>
-						<View style={[globaleStyles.vCtr]}>
-							<Text style={[styles.pTitle]}>Stopwatch</Text>
-							<Text numberOfLines={1} ellipsizeMode="tail">
+						<View style={[globaleStyles.vCtr, themeBcolor]}>
+							<Text style={[styles.pTitle, themeText]}>
 								Stopwatch
 							</Text>
-							<Text>SDK 48</Text>
+							<Text
+								style={[themeText]}
+								numberOfLines={1}
+								ellipsizeMode="tail"
+							>
+								Stopwatch
+							</Text>
+							<Text style={[themeText]}>SDK 48</Text>
 						</View>
 					</View>
-					<EmIcons title="Right" />
+					<EmIcons color={themeText.color} title="Right" />
 				</Pressable>
 			</View>
-			
 		</>
 	);
 }
@@ -72,7 +85,9 @@ const styles = StyleSheet.create({
 		flexDirection: "row",
 		alignItems: "center",
 		borderTopWidth: 1,
-		borderColor: "#e5e5e5",
+		// borderRadius: 5,
+		
+		// borderColor: "#e5e5e5",
 	},
 	btn: {
 		width: 60,

@@ -2,16 +2,18 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import { EmIcons } from "../../shared/EmIcons";
 import { globaleStyles } from "../../../styles/globalStyles";
+import { prefCtxt } from "../../../services/context/prefContext";
+import { themeMode } from "../../../services/utils/themeMode";
 
-interface ThemeOptionsProps {
-	theme: number;
-	themeHandler: (id: number) => void;
-}
+// interface ThemeOptionsProps {
+// 	theme: number;
+// 	themeHandler: (id: number) => void;
+// }
 
-export  function ThemeOptions({
-	theme,
-	themeHandler,
-}: ThemeOptionsProps) {
+export function ThemeOptions() {
+	const { theme, themeHandler } = prefCtxt();
+	const { themeText, ThemeContent, themeContainer, themeBcolor } =
+		themeMode();
 	return (
 		<>
 			<View style={[styles.btnCtr, { borderTopWidth: 0 }]}>
@@ -23,10 +25,12 @@ export  function ThemeOptions({
 					]}
 				>
 					<View style={[styles.dev]}>
-						<EmIcons title="Auto" />
-						<Text>Automatic</Text>
+						<EmIcons color={themeText.color} title="Auto" />
+						<Text style={[themeText]}>Automatic</Text>
 					</View>
-					<View style={[globaleStyles.hCtr, styles.outer]}>
+					<View
+						style={[globaleStyles.hCtr, styles.outer, themeBcolor]}
+					>
 						{theme === 1 && <View style={[styles.inner]}></View>}
 					</View>
 				</Pressable>
@@ -41,10 +45,12 @@ export  function ThemeOptions({
 					]}
 				>
 					<View style={[styles.dev]}>
-						<EmIcons title="Light" />
-						<Text>Light</Text>
+						<EmIcons color={themeText.color} title="Light" />
+						<Text style={[themeText]}>Light</Text>
 					</View>
-					<View style={[globaleStyles.hCtr, styles.outer]}>
+					<View
+						style={[globaleStyles.hCtr, styles.outer, themeBcolor]}
+					>
 						{theme === 3 && <View style={[styles.inner]}></View>}
 					</View>
 				</Pressable>
@@ -59,11 +65,20 @@ export  function ThemeOptions({
 					]}
 				>
 					<View style={[styles.dev]}>
-						<EmIcons title="Dark" />
-						<Text>Dark</Text>
+						<EmIcons color={themeText.color} title="Dark" />
+						<Text style={[themeText]}>Dark</Text>
 					</View>
-					<View style={[globaleStyles.hCtr, styles.outer]}>
-						{theme === 2 && <View style={[styles.inner]}></View>}
+					<View
+						style={[globaleStyles.hCtr, styles.outer, themeBcolor]}
+					>
+						{theme === 2 && (
+							<View
+								style={[
+									styles.inner,
+									{ backgroundColor: themeText.color },
+								]}
+							></View>
+						)}
 					</View>
 				</Pressable>
 			</View>
@@ -79,16 +94,16 @@ const styles = StyleSheet.create({
 		gap: 10,
 	},
 	outer: {
-		width: 16,
-		height: 16,
+		width: 25,
+		height: 25,
 		borderRadius: 16,
 		borderWidth: 1,
 		// backgroundColor: "white"
 	},
 	inner: {
-		width: 12,
-		height: 12,
-		borderRadius: 12,
+		width: 18,
+		height: 18,
+		borderRadius: 18,
 		backgroundColor: "black",
 	},
 	btnCtr: {

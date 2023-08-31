@@ -2,11 +2,13 @@ import { Pressable, StyleSheet, Text, View, Image } from "react-native";
 import React from "react";
 import { EmIcons } from "../../shared/EmIcons";
 import { globaleStyles } from "../../../styles/globalStyles";
+import { themeMode } from "../../../services/utils/themeMode";
 
 export function ProjectsExpo() {
+	const { ThemeContent, themeText, themeBcolor } = themeMode();
 	return (
 		<>
-			<View style={[styles.btnCtr]}>
+			<View style={[styles.btnCtr, {borderTopWidth: 0}]}>
 				<Pressable
 					style={({ pressed }) => [
 						styles.btn,
@@ -23,17 +25,17 @@ export function ProjectsExpo() {
 							style={[styles.logo]}
 						/>
 						<View style={[globaleStyles.vCtr]}>
-							<Text style={[styles.pTitle]}>Soccer</Text>
-							<Text numberOfLines={1} ellipsizeMode="tail">
+							<Text style={[styles.pTitle, themeText]}>Soccer</Text>
+							<Text style={[themeText]} numberOfLines={1} ellipsizeMode="tail">
 								Univers of soccer
 							</Text>
-							<Text>SDK 48</Text>
+							<Text style={[themeText]}>SDK 48</Text>
 						</View>
 					</View>
-					<EmIcons title="Right" />
+					<EmIcons color={themeText.color} title="Right" />
 				</Pressable>
 			</View>
-			<View style={[styles.btnCtr]}>
+			<View style={[styles.btnCtr, {borderWidth: 0}]}>
 				<Pressable
 					style={({ pressed }) => [
 						styles.btn,
@@ -50,17 +52,17 @@ export function ProjectsExpo() {
 							style={[styles.logo]}
 						/>
 						<View style={[globaleStyles.vCtr]}>
-							<Text style={[styles.pTitle]}>Rent a car</Text>
-							<Text numberOfLines={1} ellipsizeMode="tail">
+							<Text style={[styles.pTitle, themeText]}>Rent a car</Text>
+							<Text style={[themeText]} numberOfLines={1} ellipsizeMode="tail">
 								Cheap car to rent
 							</Text>
-							<Text>SDK 48</Text>
+							<Text style={[themeText]}>SDK 48</Text>
 						</View>
 					</View>
-					<EmIcons title="Right" />
+					<EmIcons color={themeText.color} title="Right" />
 				</Pressable>
 			</View>
-			<View style={[styles.btnCtr]}>
+			<View style={[styles.btnCtr, {borderWidth: 0}]}>
 				<Pressable
 					style={({ pressed }) => [
 						styles.btn,
@@ -77,17 +79,17 @@ export function ProjectsExpo() {
 							style={[styles.logo]}
 						/>
 						<View style={[globaleStyles.vCtr]}>
-							<Text style={[styles.pTitle]}>Your Pharmacy</Text>
-							<Text numberOfLines={1} ellipsizeMode="tail">
+							<Text style={[styles.pTitle, themeText]}>Your Pharmacy</Text>
+							<Text style={[themeText]} numberOfLines={1} ellipsizeMode="tail">
 								Your phamarcy opned 24/7
 							</Text>
-							<Text>SDK 48</Text>
+							<Text style={[themeText]}>SDK 48</Text>
 						</View>
 					</View>
-					<EmIcons title="Right" />
+					<EmIcons color={themeText.color} title="Right" />
 				</Pressable>
 			</View>
-			<View style={[styles.btnCtr]}>
+			<View style={[styles.btnCtr, {borderWidth: 0}]}>
 				<Pressable
 					style={({ pressed }) => [
 						styles.btn,
@@ -104,14 +106,16 @@ export function ProjectsExpo() {
 							style={[styles.logo]}
 						/>
 						<View style={[globaleStyles.vCtr]}>
-							<Text style={[styles.pTitle]}>Repair your machine fast</Text>
-							<Text numberOfLines={1} ellipsizeMode="tail">
+							<Text style={[styles.pTitle, themeText]}>
+								Repair your machine fast
+							</Text>
+							<Text style={[themeText]} numberOfLines={1} ellipsizeMode="tail">
 								Your phamarcy opned 24/7
 							</Text>
-							<Text>SDK 48</Text>
+							<Text style={[themeText]}>SDK 48</Text>
 						</View>
 					</View>
-					<EmIcons title="Right" />
+					<EmIcons color={themeText.color} title="Right" />
 				</Pressable>
 			</View>
 		</>
