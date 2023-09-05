@@ -9,13 +9,13 @@ import { themeMode } from "../../services/utils/themeMode";
 const Tab = createBottomTabNavigator();
 
 export default function BottomTabs() {
-	const { themeContainer, ThemeContent, themeText } = themeMode();
+	const { themeContainer, themeContent, themeText } = themeMode();
 	return (
 		<Tab.Navigator
 			screenOptions={({ route }) => ({
 				tabBarStyle: themeContainer,
 				headerShown: false,
-				tabBarActiveBackgroundColor: ThemeContent.backgroundColor,
+				tabBarActiveBackgroundColor: themeContent.backgroundColor,
 				tabBarLabel: ({ focused }) =>
 					focused ? <Text style={[themeText]}>{route.name}</Text> : null,
 			})}

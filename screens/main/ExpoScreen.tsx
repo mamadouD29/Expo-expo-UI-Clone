@@ -1,57 +1,31 @@
-import {
-	Pressable,
-	StyleSheet,
-	Text,
-	TextInput,
-	View,
-	Image,
-	ScrollView,
-} from "react-native";
+import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 import React, { useState } from "react";
 import { globaleStyles } from "../../styles/globalStyles";
-import { EmIcons } from "../../components/shared/EmIcons";
-import { ProjectsExpo } from "../../components/ui/Home/index";
-import { SnacksExpo } from "../../components/ui/Home/SnacksExpo";
-import instruction from "../../services/utils/instructions.json";
-import Modal from "react-native-modal";
-
-import { NavigationAndRouteProps } from "../../services/utils/NavigationAndRouteProps";
-import ModalMsg from "../../components/shared/ModalMsg";
 import { themeMode } from "../../services/utils/themeMode";
+import ModalMsg from "../../components/shared/ModalMsg";
+import instruction from "../../services/utils/instructions.json";
+import { EmIcons } from "../../components/shared/EmIcons";
 
-export default function HomeScreen({ navigation }: NavigationAndRouteProps) {
+export default function ExpoScreen() {
 	const { themeContainer, themeText, themeContent, themeBcolor } =
 		themeMode();
 	const [option, setOption] = useState<number>(0);
 	const [manual, setManual] = useState<boolean>(false);
-	const [qr, setQr] = useState<boolean>(false);
 
 	const display = (id: number) => {
-		if (id === 0) setOption(id);
-		if (id === 1) setOption(id);
-		if (id === 2) setOption(id);
-
-		if (id === 3) {
-			navigation.navigate("Projects");
-		}
-		if (id === 4) {
-			navigation.navigate("Snacks");
-		}
-		if (id === 5) {
-			setOption(3);
-		}
+		setOption(id);
 	};
 
 	const displayManual = () => {
 		setManual((prev) => !prev);
 	};
+
 	return (
-		<ScrollView
-			style={[globaleStyles.container, themeContainer]}
-			contentContainerStyle={[{ paddingBottom: 40, gap: 10 }]}
+		<View
+			style={[globaleStyles.container, themeContainer, styles.container]}
 		>
 			<ModalMsg
-				option={option === 3}
+				option={option === 5}
 				display={display}
 				title="Troubleshooting"
 				msg={instruction.helps}
@@ -76,31 +50,9 @@ export default function HomeScreen({ navigation }: NavigationAndRouteProps) {
 
 			<View style={[styles.devAndPrCtr, themeContent, themeBcolor]}>
 				<View style={[styles.dev, { padding: 10 }]}>
-					<Text
-						style={[themeText]}
-						numberOfLines={1}
-						ellipsizeMode="tail"
-					>
-						Start a local development server with:
-					</Text>
-					<View
-						style={[
-							styles.btnCtr,
-							styles.startCtr,
-							themeContainer,
-							{ borderTopWidth: 0 },
-						]}
-					>
-						<Pressable
-							style={({ pressed }) => [
-								{ opacity: pressed ? 0.3 : 1 },
-							]}
-						>
-							<Text style={[themeText]}>expo start</Text>
-						</Pressable>
-					</View>
 					<Text style={[themeText]}>
-						Select the local server when it appears here.
+						Press here to sign in to your Expo account and see the
+						projects you have recently been working on.
 					</Text>
 				</View>
 
@@ -172,7 +124,6 @@ export default function HomeScreen({ navigation }: NavigationAndRouteProps) {
 						</View>
 					</View>
 				)}
-
 				<View style={[styles.dev, styles.btnCtr]}>
 					<Pressable
 						style={({ pressed }) => [
@@ -186,46 +137,7 @@ export default function HomeScreen({ navigation }: NavigationAndRouteProps) {
 					</Pressable>
 				</View>
 			</View>
-			<View style={[styles.titleCtr]}>
-				<Text style={[themeText]}>Projects</Text>
-			</View>
-			<View style={[styles.devAndPrCtr, themeContent, themeBcolor]}>
-				<ProjectsExpo />
-				<View style={[styles.btnCtr]}>
-					<Pressable
-						onPress={() => display(3)}
-						style={({ pressed }) => [
-							styles.btn,
-							{ opacity: pressed ? 0.3 : 1, borderWidth: 0 },
-						]}
-					>
-						<Text style={[styles.seeAll, themeText]}>
-							See all projects
-						</Text>
-					</Pressable>
-				</View>
-			</View>
-
-			<View style={[styles.titleCtr]}>
-				<Text style={[themeText]}>Snacks</Text>
-			</View>
-			<View style={[styles.devAndPrCtr, themeContent, themeBcolor]}>
-				<SnacksExpo />
-				<View style={[styles.btnCtr]}>
-					<Pressable
-						onPress={() => display(4)}
-						style={({ pressed }) => [
-							styles.btn,
-							{ opacity: pressed ? 0.3 : 1, borderWidth: 0 },
-						]}
-					>
-						<Text style={[styles.seeAll, themeText]}>
-							See all Snacks
-						</Text>
-					</Pressable>
-				</View>
-			</View>
-		</ScrollView>
+		</View>
 	);
 }
 
@@ -233,14 +145,6 @@ const styles = StyleSheet.create({
 	container: {
 		padding: 20,
 		gap: 10,
-		backgroundColor: "#e5e5e5",
-	},
-
-	modal: {
-		alignItems: "center",
-		justifyContent: "center",
-		gap: 5,
-		backgroundColor: "transparent",
 	},
 	dol: {
 		width: 20,
@@ -261,6 +165,10 @@ const styles = StyleSheet.create({
 		justifyContent: "flex-start",
 		borderWidth: 0,
 	},
+	startCtr: {
+		// backgroundColor: "#e5e5e5",
+		borderRadius: 5,
+	},
 	btnCtr: {
 		padding: 10,
 		flexDirection: "row",
@@ -278,28 +186,8 @@ const styles = StyleSheet.create({
 		flexGrow: 1,
 		borderWidth: 1,
 	},
-	startCtr: {
-		// backgroundColor: "#e5e5e5",
-		borderRadius: 5,
-	},
-	prjtCtr: {
-		backgroundColor: "#fafaf9",
-		borderRadius: 5,
-	},
-	logo: {
-		width: 64,
-		height: 64,
-		resizeMode: "contain",
-	},
-	pTitle: {
-		fontSize: 20,
-		fontWeight: "bold",
-	},
 	seeAll: {
 		fontWeight: "bold",
-	},
-	titleCtr: {
-		paddingVertical: 10,
 	},
 	input: {
 		borderWidth: 1,

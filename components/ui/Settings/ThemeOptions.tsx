@@ -12,7 +12,7 @@ import { themeMode } from "../../../services/utils/themeMode";
 
 export function ThemeOptions() {
 	const { theme, themeHandler } = prefCtxt();
-	const { themeText, ThemeContent, themeContainer, themeBcolor } =
+	const { themeText, themeContent, themeContainer, themeBcolor } =
 		themeMode();
 	return (
 		<>
@@ -38,7 +38,7 @@ export function ThemeOptions() {
 
 			<View style={[styles.btnCtr]}>
 				<Pressable
-					onPress={() => themeHandler(3)}
+					onPress={() => themeHandler(2)}
 					style={({ pressed }) => [
 						styles.btn,
 						{ opacity: pressed ? 0.3 : 1 },
@@ -51,14 +51,14 @@ export function ThemeOptions() {
 					<View
 						style={[globaleStyles.hCtr, styles.outer, themeBcolor]}
 					>
-						{theme === 3 && <View style={[styles.inner]}></View>}
+						{theme === 2 && <View style={[styles.inner]}></View>}
 					</View>
 				</Pressable>
 			</View>
 
 			<View style={[styles.btnCtr]}>
 				<Pressable
-					onPress={() => themeHandler(2)}
+					onPress={() => themeHandler(3)}
 					style={({ pressed }) => [
 						styles.btn,
 						{ opacity: pressed ? 0.3 : 1 },
@@ -71,7 +71,7 @@ export function ThemeOptions() {
 					<View
 						style={[globaleStyles.hCtr, styles.outer, themeBcolor]}
 					>
-						{theme === 2 && (
+						{theme === 3 && (
 							<View
 								style={[
 									styles.inner,

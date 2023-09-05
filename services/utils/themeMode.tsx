@@ -54,13 +54,13 @@ const colors = {
 export const themeMode = () => {
 	const { theme } = prefCtxt();
 	const themeContainer =
-		theme === 2 ? colors.dark.darkContainer : colors.light.lightContainer;
-	const ThemeContent =
-		theme === 2 ? colors.dark.darkContent : colors.light.lightContent;
+		theme === 3 ? colors.dark.darkContainer : colors.light.lightContainer;
+	const themeContent =
+		theme === 3 ? colors.dark.darkContent : colors.light.lightContent;
 	const themeText =
-		theme === 2 ? colors.dark.darkText : colors.light.lightText;
+		theme === 3 ? colors.dark.darkText : colors.light.lightText;
 
-	const themeBcolor = theme === 2 ? colors.dark.bColor : colors.light.bColor;
+	const themeBcolor = theme === 3 ? colors.dark.bColor : colors.light.bColor;
 
-	return { themeContainer, ThemeContent, themeText, themeBcolor };
+	return { themeContainer, themeContent, themeText, themeBcolor };
 };

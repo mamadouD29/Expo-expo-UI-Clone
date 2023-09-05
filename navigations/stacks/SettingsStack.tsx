@@ -14,12 +14,14 @@ const Stack = createNativeStackNavigator();
 export default function SettingsStack() {
 	const { themeContainer } = themeMode();
 	return (
-		<Stack.Navigator screenOptions={{ headerStyle: themeContainer, }}>
+		<Stack.Navigator screenOptions={{ headerStyle: themeContainer }}>
 			<Stack.Screen
 				name="SettingsScreen"
 				component={SettingsScreen}
 				options={{
-					headerTitle: () => <Header title="Settings" />,
+					headerTitle: () => (
+						<Header title="Settings" signUpAndLogin={() => {}} />
+					),
 				}}
 			/>
 		</Stack.Navigator>

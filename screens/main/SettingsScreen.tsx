@@ -21,7 +21,7 @@ export default function SettingsScreen({
 	navigation,
 }: NavigationAndRouteProps) {
 	const [info, setInfo] = useState(0);
-	const { themeContainer, ThemeContent, themeText, themeBcolor } =
+	const { themeContainer, themeContent, themeText, themeBcolor } =
 		themeMode();
 
 	const closeModal = (id: number) => {
@@ -65,7 +65,7 @@ export default function SettingsScreen({
 				<Text style={[themeText, styles.title]}>Theme</Text>
 			</View>
 
-			<View style={[styles.devCtr, ThemeContent]}>
+			<View style={[styles.devCtr, themeContent]}>
 				<ThemeOptions />
 			</View>
 			<View style={[globaleStyles.vCtr, { padding: 10 }]}>
@@ -83,7 +83,7 @@ export default function SettingsScreen({
 				<Text style={[themeText, styles.title]}>App Info</Text>
 			</View>
 
-			<View style={[styles.devCtr, ThemeContent]}>
+			<View style={[styles.devCtr, themeContent]}>
 				<AppInfo appInfoHandler={appInfoHandler} />
 			</View>
 
@@ -96,7 +96,7 @@ export default function SettingsScreen({
 				<Text style={[themeText, styles.title]}>Delete Account</Text>
 			</View>
 
-			<View style={[styles.devCtr, ThemeContent, styles.devDel]}>
+			<View style={[styles.devCtr, themeContent, styles.devDel]}>
 				<View style={[styles.delCtr]}>
 					<EmIcons title="Trash" color={themeText.color} />
 					<Text style={[themeText, styles.title]}>
